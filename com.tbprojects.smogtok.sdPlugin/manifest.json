@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+	"Author": "tbprojects",
+	"CodePath": "bin/plugin.js",
+	"Description": "Displays air quality and temperature from Smogtok sensors.",
+	"Icon": "imgs/plugin-icon",
+	"Name": "Smogtok",
+	"Category": "Smogtok",
+	"CategoryIcon": "imgs/category-icon",
+	"Version": "1.0.0.0",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "6.9"
+	},
+	"Nodejs": {
+		"Version": "20"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "13"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"UUID": "com.tbprojects.smogtok",
+	"Actions": [
+		{
+			"Icon": "imgs/action-icon",
+			"Name": "Air Quality",
+			"UUID": "com.tbprojects.smogtok.air-quality",
+			"PropertyInspectorPath": "ui/property-inspector.html",
+			"States": [
+				{
+					"Image": "imgs/action-icon"
+				}
+			],
+			"Controllers": [
+				"Keypad"
+			],
+			"DisableAutomaticStates": true
+		}
+	]
+}

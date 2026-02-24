@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<script src="sdpi-components.js"></script>
+	<style>
+    body {
+      font-family: system-ui, sans-serif;
+    }
+    .sdpi-item-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+		.hint {
+			font-size: 10px;
+			color: #666;
+			margin-top: 2px;
+			padding: 0 4px;
+		}
+	</style>
+</head>
+<body>
+	<div class="sdpi-wrapper">
+		<div class="sdpi-item">
+			<div class="sdpi-item-label">Probe ID</div>
+			<sdpi-textfield
+				id="probeId"
+				setting="probeId"
+				placeholder="e.g. 9999"
+			></sdpi-textfield>
+			<p class="hint">The numeric ID from the URL — see instructions below.</p>
+		</div>
+
+		<div class="sdpi-item" style="margin-top:8px;">
+			<p style="font-size:10px; color:#666; line-height:1.7; margin:0; padding:0 4px;">
+				<strong style="color:#aaa;">Short press</strong> — toggle AQI / details view<br>
+				<strong style="color:#aaa;">Long press</strong> — open probe page in browser
+			</p>
+		</div>
+
+		<div class="sdpi-item" style="margin-top:8px;">
+			<details>
+				<summary style="cursor:pointer; font-size:11px; color:#888;">AQI icon colors</summary>
+				<table style="font-size:10px; color:#888; line-height:2; border-collapse:collapse; width:100%; margin-top:4px;">
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#dadada;vertical-align:middle;margin-right:6px;"></span>grey</td><td>no data</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1e60ab;vertical-align:middle;margin-right:6px;"></span>blue</td><td>very good</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7fd03d;vertical-align:middle;margin-right:6px;"></span>green</td><td>good</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffd202;vertical-align:middle;margin-right:6px;"></span>yellow</td><td>satisfactory</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#fe9601;vertical-align:middle;margin-right:6px;"></span>orange</td><td>bad</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#fe0000;vertical-align:middle;margin-right:6px;"></span>red</td><td>very bad</td></tr>
+					<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#8510c0;vertical-align:middle;margin-right:6px;"></span>purple</td><td>hazardous</td></tr>
+				</table>
+			</details>
+		</div>
+
+		<div class="sdpi-item">
+			<details>
+				<summary style="cursor:pointer; font-size:11px; color:#888;">How to find the Probe ID</summary>
+				<ol style="font-size:10px; color:#888; padding-left:16px; line-height:1.8;">
+					<li>Open <a href="https://smogtok.com" target="_blank" style="color:#4a9eff;">smogtok.com</a> and navigate to your sensor.</li>
+					<li>The URL will look like:<br>
+						<code style="color:#4a9eff; word-break:break-all;">smogtok.com/onedevice?probeId=<strong>{your-id}</strong></code>
+					</li>
+					<li>The number after <code style="color:#4a9eff;">probeId=</code> is your <strong style="color:#aaa;">Probe ID</strong>.</li>
+				</ol>
+			</details>
+		</div>
+	</div>
+
+	<script>
+		const { streamDeckClient } = SDPIComponents;
+
+		streamDeckClient.didReceiveSettings(({ payload }) => {
+			const { settings } = payload;
+			document.getElementById("probeId").value = settings.probeId ?? "";
+		});
+	</script>
+</body>
+</html>
